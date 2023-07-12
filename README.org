@@ -1,0 +1,29 @@
+* cl-chronogram (WiP)
+
+#+begin_html
+<div align="center">
+  <a href="https://upload.wikimedia.org/wikipedia/commons/6/6b/ChronogrHildesheim.jpg" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/ChronogrHildesheim.jpg/320px-ChronogrHildesheim.jpg" width="320" height="224">
+  </a>
+</div>
+<p align="center">
+  <a href="https://github.com/ak-coram/cl-chronogram/actions">
+    <img alt="Build Status" src="https://github.com/ak-coram/cl-chronogram/workflows/CI/badge.svg" />
+  </a>
+</p>
+#+end_html
+
+Locale-specific patterns for formatting and parsing dates, times and
+timezones for Common Lisp projects based on the [[https://cldr.unicode.org/][Unicode Common Locale
+Data Repository (CLDR)]]
+
+** Disclaimer
+
+The current implementation of this library is incomplete and prone to
+breaking changes. It is not recommended to be used for anything.
+
+** Legal
+
+- Software released under the MIT License
+- Also refer to the [[https://github.com/unicode-org/cldr/blob/main/LICENSE][Unicode License]] (CLDR)
+- [[https://commons.wikimedia.org/wiki/File:ChronogrHildesheim.jpg][Source]] for README photo
