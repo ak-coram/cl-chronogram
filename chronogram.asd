@@ -11,7 +11,8 @@
 (asdf:defsystem #:chronogram/cldr-parser
   :depends-on (#:alexandria
                #:esrap
-               #:plump)
+               #:plump
+               #:clss)
   :components ((:file "chronogram-cldr-parser")))
 
 (asdf:defsystem #:chronogram/test
