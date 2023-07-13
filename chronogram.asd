@@ -12,7 +12,7 @@
   :depends-on (#:alexandria
                #:esrap
                #:plump)
-  :components ((:file "cldr-parser")))
+  :components ((:file "chronogram-cldr-parser")))
 
 (asdf:defsystem #:chronogram/test
   :depends-on (#:chronogram
