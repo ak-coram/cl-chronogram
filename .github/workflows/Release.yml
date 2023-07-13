@@ -1,0 +1,72 @@
+name: Release
+
+on:
+  push:
+    tags:
+
+jobs:
+ release:
+    name: Build chronogram-dist and package for release
+    runs-on: ubuntu-latest
+    env:
+      LISP: sbcl-bin
+      QUICKLISP_DIST: ultralisp
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Setup Lisp
+        continue-on-error: true
+        uses: 40ants/setup-lisp@v2
+        with:
+          qlfile-template: |
+            {% ifequal quicklisp_dist "ultralisp" %}
+            dist ultralisp http://dist.ultralisp.org
+            {% endifequal %}
+
+      - name: Build make-chronogram-dist
+        shell: bash
+        run: |
+          ros run --eval '(progn (ql:quickload :chronogram/make-dist) (asdf:make :chronogram/make-dist))'
+
+      - name: Run make-chronogram-dist
+        shell: bash
+        run: |
+          ./make-chronogram-dist
+
+      - name: Push dist to ultralisp branch
+        uses: stefanzweifel/git-auto-commit-action@v4
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          commit_message: Update dist for ultralisp
+          branch: ultralisp
+          commit_options: '--no-verify'
+          add_options: '-f'
+          file_pattern: 'chronogram-dist*'
+          push_options: '--force'
+          skip_dirty_check: true
+          skip_fetch: true
+          skip_checkout: true
+          create_branch: true
+          disable_globbing: false
+
+      - name: Package release
+        shell: bash
+        run: |
+          mkdir cl-chronogram
+          cp LICENSE README.org chronogram.asd CLDR_RELEASE *.lisp cl-chronogram/
+          cp -r chronogram-dist cl-chronogram/
+          zip -r cl-chronogram.zip cl-chronogram/
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: cl-chronogram
+          path: cl-chronogram/
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: cl-chronogram.zip
