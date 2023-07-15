@@ -12,8 +12,7 @@
   :depends-on (#:alexandria
                #:esrap
                #:plump
-               #:clss
-               #:com.inuoe.jzon)
+               #:clss)
   :components ((:file "chronogram-cldr-parser")))
 
 (asdf:defsystem #:chronogram/test

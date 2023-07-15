@@ -15,13 +15,12 @@
   (format nil "https://github.com/unicode-org/cldr/archive/refs/tags/~a.zip" tag))
 
 (defun make-chronogram-info (contents dist-dir name)
-  (with-open-file (stream (format nil "~a~a.json" dist-dir name)
+  (with-open-file (stream (format nil "~a~a.lisp" dist-dir name)
                           :direction :output
                           :if-exists :supersede
                           :if-does-not-exist :create)
     (let ((*package* (find-package 'chronogram-cldr-parser)))
-      (chronogram-cldr-parser:parse-cldr contents
-                                         stream))))
+      (format stream "~s~%" (chronogram-cldr-parser:parse-cldr contents)))))
 
 (defun make-dist (&optional force-download)
   (let* ((system (asdf:find-system 'chronogram t))
@@ -45,7 +44,7 @@
             (loop :for name :in names
                   :for entry := (zip:get-zipfile-entry
                                  (format nil "cldr-~a/~a" tag name) f)
-                  :do (format t "Writing ~a~a.json... " dist-dir name)
+                  :do (format t "Writing ~a~a.lisp... " dist-dir name)
                   :do (force-output)
                   :do (make-chronogram-info
                        (babel:octets-to-string (zip:zipfile-entry-contents entry)
@@ -55,7 +54,7 @@
                   :do (format t "DONE~%"))))
         (loop :with cldr-dir := (asdf:system-relative-pathname system "cldr/")
               :for name :in names
-              :do (format t "Writing ~a~a.json... " dist-dir name)
+              :do (format t "Writing ~a~a.lisp... " dist-dir name)
               :do (force-output)
               :do (make-chronogram-info
                    (uiop:read-file-string (format nil "~a/common/main/~a.xml"
