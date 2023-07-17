@@ -11,30 +11,42 @@
     (when (plusp (length results))
       (elt results 0))))
 
-(defmacro gen-parse-fn (selector value-function
-                        &key (intern-type nil) (integer-type nil))
-  (alexandria:with-gensyms (entity entity-type)
+(defmacro gen-parse-fn
+    (selector value-function
+     &key (intern-type nil) (integer-type nil) (group-by-alt nil))
+  (alexandria:with-gensyms (entity entity-type alt-type entry results)
     `(lambda (entity-parent)
-       (loop :for ,entity :across (clss:select ,selector entity-parent)
+       (loop :with ,results := nil
+             :for ,entity :across (clss:select ,selector entity-parent)
              :for ,entity-type := (plump:get-attribute ,entity "type")
-             :when ,entity-type
-               :collect (cons ,(cond
-                                 (intern-type `(intern (string-upcase ,entity-type)))
-                                 (integer-type `(parse-integer ,entity-type))
-                                 (t entity-type))
-                              (funcall ,value-function
-                                       ,entity))))))
+             :for ,alt-type := (intern (string-upcase
+                                        (or (plump:get-attribute ,entity "alt")
+                                            "default")))
+             :for ,entry
+               := (cons ,(cond
+                           (intern-type `(intern (string-upcase ,entity-type)))
+                           (integer-type `(parse-integer ,entity-type))
+                           (t entity-type))
+                        (funcall ,value-function
+                                 ,entity))
+             :do (push ,entry ,(if group-by-alt
+                                   `(alexandria:assoc-value ,results ,alt-type)
+                                   results))
+             :finally (return ,results)))))
 
 (let* (;; Months
-       (parse-month (gen-parse-fn "month:not([alt])" #'plump:text :integer-type t))
+       (parse-month (gen-parse-fn "month" #'plump:text
+                                  :integer-type t :group-by-alt t))
        (parse-month-width (gen-parse-fn "monthWidth" parse-month
                                         :intern-type t))
        (parse-month-context
          (gen-parse-fn "months > monthContext" parse-month-width
                        :intern-type t))
-       
+
        ;; Days
-       (parse-day (gen-parse-fn "day:not([alt])" #'plump:text :intern-type t))
+       (parse-day (gen-parse-fn "day" #'plump:text
+                                :intern-type t
+                                :group-by-alt t))
        (parse-day-width (gen-parse-fn "dayWidth"
                                       parse-day
                                       :intern-type t))
@@ -43,8 +55,9 @@
                                         :intern-type t))
 
        ;; Quarters
-       (parse-quarter (gen-parse-fn "quarter:not([alt])" #'plump:text
-                                    :integer-type t))
+       (parse-quarter (gen-parse-fn "quarter" #'plump:text
+                                    :integer-type t
+                                    :group-by-alt t))
        (parse-quarter-width (gen-parse-fn "quarterWidth"
                                           parse-quarter
                                           :intern-type t))
@@ -53,8 +66,9 @@
                                             :intern-type t))
 
        ;; Day periods
-       (parse-day-period (gen-parse-fn "dayPeriod:not([alt])" #'plump:text
-                                       :intern-type t))
+       (parse-day-period (gen-parse-fn "dayPeriod" #'plump:text
+                                       :intern-type t
+                                       :group-by-alt t))
        (parse-day-period-width (gen-parse-fn "dayPeriodWidth"
                                              parse-day-period
                                              :intern-type t))
@@ -63,15 +77,18 @@
                                                :intern-type t))
 
        ;; Eras
-       (parse-era-names (gen-parse-fn "eras > eraNames > era:not([alt])"
+       (parse-era-names (gen-parse-fn "eras > eraNames > era"
                                       #'plump:text
-                                      :integer-type t))
-       (parse-era-abbreviations (gen-parse-fn "eras > eraAbbr > era:not([alt])"
+                                      :integer-type t
+                                      :group-by-alt t))
+       (parse-era-abbreviations (gen-parse-fn "eras > eraAbbr > era"
                                               #'plump:text
-                                              :integer-type t))
-       (parse-era-narrow (gen-parse-fn "eras > eraNarrow > era:not([alt])"
+                                              :integer-type t
+                                              :group-by-alt t))
+       (parse-era-narrow (gen-parse-fn "eras > eraNarrow > era"
                                        #'plump:text
-                                       :integer-type t))
+                                       :integer-type t
+                                       :group-by-alt t))
        (parse-eras
          (lambda (calendar)
            `((abbreviated . ,(funcall parse-era-abbreviations calendar))
@@ -79,13 +96,15 @@
              (wide . ,(funcall parse-era-names calendar)))))
 
        ;; Calendar
-       (parse-calendar 
+       (parse-calendar
          (gen-parse-fn "ldml > dates > calendars > calendar"
                        (lambda (calendar)
                          `((months . ,(funcall parse-month-context calendar))
                            (days . ,(funcall parse-day-context calendar))
-                           (quarters . ,(funcall parse-quarter-context calendar))
-                           (day-periods . ,(funcall parse-day-period-context calendar))
+                           (quarters . ,(funcall parse-quarter-context
+                                                 calendar))
+                           (day-periods . ,(funcall parse-day-period-context
+                                                    calendar))
                            (eras . ,(funcall parse-eras calendar))))
                        :intern-type t)))
   (defun parse-cldr (contents)
@@ -93,4 +112,3 @@
       (list (cons 'calendars (funcall parse-calendar root))))))
 
 ;; (parse-cldr (uiop:read-file-string "cldr/common/main/hu.xml"))
-
