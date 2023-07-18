@@ -8,21 +8,21 @@
 (in-package #:chronogram-dist)
 
 (defun make-chronogram-info (contents dist-dir)
-  (multiple-value-bind (info language script territory variant)
-      (chronogram-cldr-parser:parse-cldr contents)
-    (with-open-file (stream (format nil "~a~{~a~^_~}.lisp"
-                                    dist-dir
-                                    `(,language
-                                      ,@(when script
-                                          (list script))
-                                      ,@(when territory
-                                          (list territory))
-                                      ,@(when variant
-                                          (list variant))))
-                            :direction :output
-                            :if-exists :supersede
-                            :if-does-not-exist :create)
-      (let ((*package* (find-package 'chronogram-cldr-parser)))
+  (let ((*package* (find-package 'chronogram-cldr-parser)))
+    (multiple-value-bind (info language script territory variant)
+        (chronogram-cldr-parser:parse-cldr contents)
+      (with-open-file (stream (format nil "~a~{~a~^_~}.lisp"
+                                      dist-dir
+                                      `(,language
+                                        ,@(when script
+                                            (list script))
+                                        ,@(when territory
+                                            (list territory))
+                                        ,@(when variant
+                                            (list variant))))
+                              :direction :output
+                              :if-exists :supersede
+                              :if-does-not-exist :create)
         (format stream "~s~%" info)))))
 
 (defun make-dist ()
