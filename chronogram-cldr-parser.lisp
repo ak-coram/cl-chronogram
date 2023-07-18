@@ -97,7 +97,7 @@
                         (narrow . ,(funcall parse-era-narrow calendar))
                         (wide . ,(funcall parse-era-names calendar))))))
 
-       ;; Date and time formats
+       ;; Date, time and datetime formats
        (parse-date-format
          (lambda (format)
            `((pattern . ,(plump:text (clss-select-first "pattern"
@@ -113,6 +113,14 @@
        (parse-time-formats
          (gen-parse-fn "timeFormats > timeFormatLength"
                        parse-time-format
+                       :intern-type t))
+       (parse-datetime-format
+         (lambda (format)
+           `((pattern . ,(plump:text (clss-select-first "pattern"
+                                                        format))))))
+       (parse-datetime-formats
+         (gen-parse-fn "dateTimeFormats > dateTimeFormatLength"
+                       parse-datetime-format
                        :intern-type t))
 
        ;; Calendar
@@ -132,7 +140,9 @@
                          (date-formats . ,(funcall parse-date-formats
                                                    calendar))
                          (time-formats . ,(funcall parse-time-formats
-                                                   calendar)))))
+                                                   calendar))
+                         (datetime-formats . ,(funcall parse-datetime-formats
+                                                       calendar)))))
           :intern-type t)))
   (defun parse-cldr (contents)
     (let* ((root (plump:parse contents))
