@@ -114,13 +114,25 @@
            (territory-node (clss-select-first "ldml > identity > territory" root))
            (territory (when territory-node
                         (plump:get-attribute territory-node "type")))
+           (script-node (clss-select-first "ldml > identity > script" root))
+           (script (when script-node
+                     (plump:get-attribute script-node "type")))
+           (variant-node (clss-select-first "ldml > identity > variant" root))
+           (variant (when variant-node
+                      (plump:get-attribute variant-node "type")))
            (calendars (funcall parse-calendar root)))
       (values `((language . ,language)
+                ,@(when script
+                    `((script . ,script)))
                 ,@(when territory
                     `((territory . ,territory)))
+                ,@(when variant
+                    `((variant . ,variant)))
                 ,@(when calendars
                     `((calendars . ,calendars))))
               language
-              territory))))
+              script
+              territory
+              variant))))
 
 ;; (parse-cldr (uiop:read-file-string "cldr-staging/production/common/main/en_GB.xml"))

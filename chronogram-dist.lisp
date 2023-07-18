@@ -8,16 +8,17 @@
 (in-package #:chronogram-dist)
 
 (defun make-chronogram-info (contents dist-dir)
-  (multiple-value-bind (info language territory)
+  (multiple-value-bind (info language script territory variant)
       (chronogram-cldr-parser:parse-cldr contents)
-    (with-open-file (stream (if territory
-                                (format nil "~a~a_~a.lisp"
-                                        dist-dir
-                                        language
-                                        territory)
-                                (format nil "~a~a.lisp"
-                                        dist-dir
-                                        language))
+    (with-open-file (stream (format nil "~a~{~a~^_~}.lisp"
+                                    dist-dir
+                                    `(,language
+                                      ,@(when script
+                                          (list script))
+                                      ,@(when territory
+                                          (list territory))
+                                      ,@(when variant
+                                          (list variant))))
                             :direction :output
                             :if-exists :supersede
                             :if-does-not-exist :create)
