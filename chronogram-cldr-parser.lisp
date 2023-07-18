@@ -115,10 +115,12 @@
            (territory (when territory-node
                         (plump:get-attribute territory-node "type")))
            (calendars (funcall parse-calendar root)))
-      `((language . ,language)
-        ,@(when territory
-            `((territory . ,territory)))
-        ,@(when calendars
-            `((calendars . ,calendars)))))))
+      (values `((language . ,language)
+                ,@(when territory
+                    `((territory . ,territory)))
+                ,@(when calendars
+                    `((calendars . ,calendars))))
+              language
+              territory))))
 
 ;; (parse-cldr (uiop:read-file-string "cldr-staging/production/common/main/en_GB.xml"))
