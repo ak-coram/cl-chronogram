@@ -95,6 +95,15 @@
              (narrow . ,(funcall parse-era-narrow calendar))
              (wide . ,(funcall parse-era-names calendar)))))
 
+       (parse-date-format
+         (lambda (format)
+           `((pattern . ,(plump:text (clss-select-first "pattern"
+                                                        format))))))
+       (parse-date-formats
+         (gen-parse-fn "dateFormats > dateFormatLength"
+                       parse-date-format
+                       :intern-type t))
+
        ;; Calendar
        (parse-calendar
          (gen-parse-fn "ldml > dates > calendars > calendar"
@@ -105,7 +114,9 @@
                                                  calendar))
                            (day-periods . ,(funcall parse-day-period-context
                                                     calendar))
-                           (eras . ,(funcall parse-eras calendar))))
+                           (eras . ,(funcall parse-eras calendar))
+                           (date-formats . ,(funcall parse-date-formats
+                                                     calendar))))
                        :intern-type t)))
   (defun parse-cldr (contents)
     (let* ((root (plump:parse contents))
@@ -135,4 +146,4 @@
               territory
               variant))))
 
-;; (parse-cldr (uiop:read-file-string "cldr-staging/production/common/main/en_GB.xml"))
+;; (parse-cldr (uiop:read-file-string "cldr-staging/production/common/main/hu.xml"))
