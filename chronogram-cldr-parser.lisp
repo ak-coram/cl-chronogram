@@ -91,10 +91,13 @@
                                        :group-by-alt t))
        (parse-eras
          (lambda (calendar)
-           `((abbreviated . ,(funcall parse-era-abbreviations calendar))
-             (narrow . ,(funcall parse-era-narrow calendar))
-             (wide . ,(funcall parse-era-names calendar)))))
+           (remove-if (lambda (x)
+                        (null (cdr x)))
+                      `((abbreviated . ,(funcall parse-era-abbreviations calendar))
+                        (narrow . ,(funcall parse-era-narrow calendar))
+                        (wide . ,(funcall parse-era-names calendar))))))
 
+       ;; Date and time formats
        (parse-date-format
          (lambda (format)
            `((pattern . ,(plump:text (clss-select-first "pattern"
@@ -103,21 +106,34 @@
          (gen-parse-fn "dateFormats > dateFormatLength"
                        parse-date-format
                        :intern-type t))
+       (parse-time-format
+         (lambda (format)
+           `((pattern . ,(plump:text (clss-select-first "pattern"
+                                                        format))))))
+       (parse-time-formats
+         (gen-parse-fn "timeFormats > timeFormatLength"
+                       parse-time-format
+                       :intern-type t))
 
        ;; Calendar
        (parse-calendar
-         (gen-parse-fn "ldml > dates > calendars > calendar"
-                       (lambda (calendar)
-                         `((months . ,(funcall parse-month-context calendar))
-                           (days . ,(funcall parse-day-context calendar))
-                           (quarters . ,(funcall parse-quarter-context
-                                                 calendar))
-                           (day-periods . ,(funcall parse-day-period-context
-                                                    calendar))
-                           (eras . ,(funcall parse-eras calendar))
-                           (date-formats . ,(funcall parse-date-formats
-                                                     calendar))))
-                       :intern-type t)))
+         (gen-parse-fn
+          "ldml > dates > calendars > calendar"
+          (lambda (calendar)
+            (remove-if (lambda (x)
+                         (null (cdr x)))
+                       `((months . ,(funcall parse-month-context calendar))
+                         (days . ,(funcall parse-day-context calendar))
+                         (quarters . ,(funcall parse-quarter-context
+                                               calendar))
+                         (day-periods . ,(funcall parse-day-period-context
+                                                  calendar))
+                         (eras . ,(funcall parse-eras calendar))
+                         (date-formats . ,(funcall parse-date-formats
+                                                   calendar))
+                         (time-formats . ,(funcall parse-time-formats
+                                                   calendar)))))
+          :intern-type t)))
   (defun parse-cldr (contents)
     (let* ((root (plump:parse contents))
            (language (plump:get-attribute (clss-select-first "ldml > identity > language" root)
