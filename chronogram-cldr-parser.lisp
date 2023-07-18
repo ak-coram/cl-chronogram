@@ -108,7 +108,17 @@
                            (eras . ,(funcall parse-eras calendar))))
                        :intern-type t)))
   (defun parse-cldr (contents)
-    (let ((root (plump:parse contents)))
-      (list (cons 'calendars (funcall parse-calendar root))))))
+    (let* ((root (plump:parse contents))
+           (language (plump:get-attribute (clss-select-first "ldml > identity > language" root)
+                                          "type"))
+           (territory-node (clss-select-first "ldml > identity > territory" root))
+           (territory (when territory-node
+                        (plump:get-attribute territory-node "type")))
+           (calendars (funcall parse-calendar root)))
+      `((language . ,language)
+        ,@(when territory
+            `((territory . ,territory)))
+        ,@(when calendars
+            `((calendars . ,calendars)))))))
 
-;; (parse-cldr (uiop:read-file-string "cldr/common/main/hu.xml"))
+;; (parse-cldr (uiop:read-file-string "cldr-staging/production/common/main/en_GB.xml"))
