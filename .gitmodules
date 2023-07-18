@@ -1,3 +1,3 @@
-[submodule "cldr"]
-	path = cldr
-	url = https://github.com/unicode-org/cldr.git
+[submodule "cldr-staging"]
+	path = cldr-staging
+	url = https://github.com/unicode-org/cldr-staging.git

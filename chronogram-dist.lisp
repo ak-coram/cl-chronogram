@@ -12,7 +12,9 @@
                 (asdf:system-relative-pathname system "CLDR_RELEASE"))))
 
 (defun get-archive-url (tag)
-  (format nil "https://github.com/unicode-org/cldr/archive/refs/tags/~a.zip" tag))
+  (format nil
+          "https://github.com/unicode-org/cldr-staging/archive/refs/tags/~a.zip"
+          tag))
 
 (defun make-chronogram-info (contents dist-dir name)
   (with-open-file (stream (format nil "~a~a.lisp" dist-dir name)
@@ -27,7 +29,8 @@
          (dist-dir (asdf:system-relative-pathname system "chronogram-dist/"))
          (cldr-submodule-available
            (uiop:file-exists-p
-            (asdf:system-relative-pathname system "cldr/unicode-license.txt")))
+            (asdf:system-relative-pathname system
+                                           "cldr-staging/LICENSE.txt")))
          (tag (when (or force-download (not cldr-submodule-available))
                 (get-cldr-release-tag system)))
          (names '("en" "de" "hu" "ko")))
@@ -52,14 +55,16 @@
                        dist-dir
                        name)
                   :do (format t "DONE~%"))))
-        (loop :with cldr-dir := (asdf:system-relative-pathname system "cldr/")
+        (loop :with cldr-dir
+                := (asdf:system-relative-pathname system "cldr-staging/")
               :for name :in names
               :do (format t "Writing ~a~a.lisp... " dist-dir name)
               :do (force-output)
               :do (make-chronogram-info
-                   (uiop:read-file-string (format nil "~a/common/main/~a.xml"
-                                                  cldr-dir
-                                                  name))
+                   (uiop:read-file-string
+                    (format nil "~a/production/common/main/~a.xml"
+                            cldr-dir
+                            name))
                    dist-dir
                    name)
               :do (format t "DONE~%")))))
