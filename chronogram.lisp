@@ -100,7 +100,7 @@
         :for path :in (uiop:directory-files *chronogram-dist-dir*)
         :for entry := (read-resource path)
         :for id := (mapcar (lambda (sym)
-                             (alexandria:assoc-value entry sym))
+                             (cdr (assoc sym entry)))
                            `(language script territory variant))
         :do (setf (gethash id ht) entry)
         :finally (return ht)))
