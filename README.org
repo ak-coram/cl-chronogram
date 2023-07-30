@@ -26,4 +26,5 @@ breaking changes. It is not recommended to be used for anything.
 
 - Software released under the MIT License
 - Also refer to the [[https://github.com/unicode-org/cldr/blob/main/LICENSE][Unicode License]] (CLDR)
+- [[https://developercertificate.org/][Developer Certificate of Origin]]
 - [[https://commons.wikimedia.org/wiki/File:ChronogrHildesheim.jpg][Source]] for README photo
