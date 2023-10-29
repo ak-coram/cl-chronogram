@@ -1,0 +1,1 @@
+((LANGUAGE . "gu") (TERRITORY . "IN"))

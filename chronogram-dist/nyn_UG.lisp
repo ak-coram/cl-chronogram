@@ -1,0 +1,1 @@
+((LANGUAGE . "nyn") (TERRITORY . "UG"))

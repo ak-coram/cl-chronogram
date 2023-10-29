@@ -1,0 +1,1 @@
+((LANGUAGE . "ks") (SCRIPT . "Arab"))

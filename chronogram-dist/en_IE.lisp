@@ -1,0 +1,8 @@
+((LANGUAGE . "en") (TERRITORY . "IE")
+ (CALENDARS
+  (GREGORIAN
+   (DAY-PERIODS (FORMAT (WIDE (DEFAULT (PM . "p.m.") (AM . "a.m.")))))
+   (DATE-FORMATS (FULL (PATTERN . "EEEE d MMMM y")))
+   (TIME-FORMATS (SHORT (PATTERN . "HH:mm")) (MEDIUM (PATTERN . "HH:mm:ss"))
+    (LONG (PATTERN . "HH:mm:ss z")) (FULL (PATTERN . "HH:mm:ss zzzz"))))
+  (GENERIC (DATE-FORMATS (FULL (PATTERN . "EEEE d MMMM y G"))))))

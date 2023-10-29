@@ -1,0 +1,11 @@
+((LANGUAGE . "zh") (SCRIPT . "Hans") (TERRITORY . "MO")
+ (CALENDARS (ROC (DATE-FORMATS (SHORT (PATTERN . "Gd/M/yy"))))
+  (ISLAMIC (DATE-FORMATS (SHORT (PATTERN . "Gd/M/yy"))))
+  (GREGORIAN (DATE-FORMATS (SHORT (PATTERN . "d/M/yy")))
+   (TIME-FORMATS (SHORT (PATTERN . "ah:mm")) (MEDIUM (PATTERN . "ah:mm:ss"))
+    (LONG (PATTERN . "z ah:mm:ss")) (FULL (PATTERN . "zzzz ah:mm:ss"))))
+  (GENERIC (DATE-FORMATS (SHORT (PATTERN . "d/M/yyGGGGG"))))
+  (CHINESE
+   (DATE-FORMATS (MEDIUM (PATTERN . "U年MMMd日")) (LONG (PATTERN . "U年MMMd日"))
+    (FULL (PATTERN . "U年MMMd日EEEE"))))
+  (BUDDHIST)))

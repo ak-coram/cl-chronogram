@@ -1,0 +1,1 @@
+((LANGUAGE . "kk") (TERRITORY . "KZ"))

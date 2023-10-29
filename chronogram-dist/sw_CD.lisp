@@ -1,0 +1,1 @@
+((LANGUAGE . "sw") (TERRITORY . "CD") (CALENDARS (GENERIC)))

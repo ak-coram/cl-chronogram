@@ -1,0 +1,1 @@
+((LANGUAGE . "nds") (TERRITORY . "NL"))
