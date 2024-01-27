@@ -1,0 +1,1 @@
+((LANGUAGE . "hsb") (TERRITORY . "DE"))

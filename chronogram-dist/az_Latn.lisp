@@ -1,0 +1,1 @@
+((LANGUAGE . "az") (SCRIPT . "Latn"))

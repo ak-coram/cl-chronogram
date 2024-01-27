@@ -1,0 +1,1 @@
+((LANGUAGE . "pap") (TERRITORY . "CW"))

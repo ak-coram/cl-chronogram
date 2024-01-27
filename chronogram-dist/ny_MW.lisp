@@ -1,0 +1,1 @@
+((LANGUAGE . "ny") (TERRITORY . "MW"))
