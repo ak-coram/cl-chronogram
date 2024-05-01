@@ -1,0 +1,1 @@
+((LANGUAGE . "ceb") (TERRITORY . "PH"))

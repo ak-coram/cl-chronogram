@@ -1,0 +1,1 @@
+((LANGUAGE . "vmw") (TERRITORY . "MZ"))

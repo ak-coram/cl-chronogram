@@ -1,0 +1,1 @@
+((LANGUAGE . "tpi") (TERRITORY . "PG"))

@@ -1,0 +1,1 @@
+((LANGUAGE . "kln") (TERRITORY . "KE"))

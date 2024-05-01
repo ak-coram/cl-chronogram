@@ -1,0 +1,1 @@
+((LANGUAGE . "pis") (TERRITORY . "SB"))

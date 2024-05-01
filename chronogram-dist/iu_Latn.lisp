@@ -1,0 +1,1 @@
+((LANGUAGE . "iu") (SCRIPT . "Latn"))

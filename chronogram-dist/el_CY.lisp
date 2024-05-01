@@ -1,0 +1,1 @@
+((LANGUAGE . "el") (TERRITORY . "CY"))

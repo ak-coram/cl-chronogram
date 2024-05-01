@@ -1,0 +1,1 @@
+((LANGUAGE . "dua") (TERRITORY . "CM"))

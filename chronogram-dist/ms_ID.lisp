@@ -1,0 +1,16 @@
+((LANGUAGE . "ms") (TERRITORY . "ID")
+ (CALENDARS
+  (ISLAMIC
+   (DATE-FORMATS (SHORT (PATTERN . "dd/MM/yy GGGGG"))
+    (MEDIUM (PATTERN . "d MMM y G")) (FULL (PATTERN . "EEEE, dd MMMM y G"))))
+  (GREGORIAN
+   (DATE-FORMATS (SHORT (PATTERN . "dd/MM/yy"))
+    (FULL (PATTERN . "EEEE, dd MMMM y")))
+   (TIME-FORMATS (SHORT (PATTERN . "HH.mm")) (MEDIUM (PATTERN . "HH.mm.ss"))
+    (LONG (PATTERN . "HH.mm.ss z")) (FULL (PATTERN . "HH.mm.ss zzzz"))))
+  (GENERIC
+   (DATE-FORMATS (SHORT (PATTERN . "dd/MM/yy GGGGG"))
+    (MEDIUM (PATTERN . "d MMM y G")) (FULL (PATTERN . "EEEE, dd MMMM y G"))))
+  (BUDDHIST
+   (DATE-FORMATS (SHORT (PATTERN . "dd/MM/yy GGGGG"))
+    (MEDIUM (PATTERN . "d MMM y G")) (FULL (PATTERN . "EEEE, dd MMMM y G"))))))
