@@ -31,7 +31,7 @@
          (cldr-submodule-available
            (uiop:file-exists-p
             (asdf:system-relative-pathname system
-                                           "cldr-staging/LICENSE.txt")))
+                                           "cldr-staging/LICENSE")))
          (cldr-dir (asdf:system-relative-pathname system "cldr-staging"))
          (paths (uiop:directory-files (format nil "~a/production/common/main/"
                                               cldr-dir))))
