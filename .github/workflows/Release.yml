@@ -64,7 +64,7 @@ jobs:
           cp -r chronogram-dist cl-chronogram/
           zip -r cl-chronogram.zip cl-chronogram/
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: cl-chronogram
           path: cl-chronogram/
