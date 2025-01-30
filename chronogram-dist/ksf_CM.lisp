@@ -1,0 +1,1 @@
+((LANGUAGE . "ksf") (TERRITORY . "CM"))

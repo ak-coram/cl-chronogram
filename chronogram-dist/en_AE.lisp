@@ -1,0 +1,12 @@
+((LANGUAGE . "en") (TERRITORY . "AE")
+ (CALENDARS
+  (GREGORIAN
+   (DATE-FORMATS (SHORT (PATTERN . "dd/MM/y")) (MEDIUM (PATTERN . "d MMM y"))
+    (LONG (PATTERN . "d MMMM y")) (FULL (PATTERN . "EEEE, d MMMM y"))))
+  (GENERIC
+   (DATE-FORMATS (SHORT (PATTERN . "dd/MM/y GGGGG"))
+    (MEDIUM (PATTERN . "d MMM y G")) (LONG (PATTERN . "d MMMM y G"))
+    (FULL (PATTERN . "EEEE, d MMMM y G"))))
+  (CHINESE
+   (DATE-FORMATS (SHORT (PATTERN . "dd/MM/r")) (MEDIUM (PATTERN . "d MMM r"))
+    (LONG (PATTERN . "d MMMM r(U)")) (FULL (PATTERN . "EEEE, d MMMM r(U)"))))))

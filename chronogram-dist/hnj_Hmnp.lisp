@@ -1,0 +1,1 @@
+((LANGUAGE . "hnj") (SCRIPT . "Hmnp"))

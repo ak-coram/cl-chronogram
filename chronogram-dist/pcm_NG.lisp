@@ -1,0 +1,1 @@
+((LANGUAGE . "pcm") (TERRITORY . "NG"))

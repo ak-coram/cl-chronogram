@@ -1,0 +1,1 @@
+((LANGUAGE . "kok") (SCRIPT . "Deva"))
