@@ -1,0 +1,1 @@
+((LANGUAGE . "ckb") (TERRITORY . "IQ"))

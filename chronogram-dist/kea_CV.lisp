@@ -1,0 +1,1 @@
+((LANGUAGE . "kea") (TERRITORY . "CV"))

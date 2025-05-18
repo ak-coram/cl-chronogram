@@ -1,0 +1,1 @@
+((LANGUAGE . "nv") (TERRITORY . "US"))

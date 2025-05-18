@@ -1,0 +1,1 @@
+((LANGUAGE . "sr") (SCRIPT . "Cyrl"))

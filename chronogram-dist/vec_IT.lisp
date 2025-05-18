@@ -1,0 +1,1 @@
+((LANGUAGE . "vec") (TERRITORY . "IT"))

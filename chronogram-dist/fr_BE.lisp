@@ -1,0 +1,5 @@
+((LANGUAGE . "fr") (TERRITORY . "BE")
+ (CALENDARS
+  (GREGORIAN (DATE-FORMATS (SHORT (PATTERN . "d/MM/yy")))
+   (TIME-FORMATS (FULL (PATTERN . "H 'h' mm 'min' ss 's' zzzz"))))
+  (GENERIC (DATE-FORMATS (SHORT (PATTERN . "d/MM/yy GGGGG"))))))

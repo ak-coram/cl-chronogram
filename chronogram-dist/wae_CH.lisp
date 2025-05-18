@@ -1,0 +1,1 @@
+((LANGUAGE . "wae") (TERRITORY . "CH"))

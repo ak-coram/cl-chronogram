@@ -1,0 +1,1 @@
+((LANGUAGE . "kde") (TERRITORY . "TZ"))

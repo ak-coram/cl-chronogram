@@ -1,0 +1,1 @@
+((LANGUAGE . "ksh") (TERRITORY . "DE"))

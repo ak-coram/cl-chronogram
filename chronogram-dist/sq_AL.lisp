@@ -1,0 +1,1 @@
+((LANGUAGE . "sq") (TERRITORY . "AL"))

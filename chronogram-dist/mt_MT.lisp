@@ -1,0 +1,1 @@
+((LANGUAGE . "mt") (TERRITORY . "MT"))

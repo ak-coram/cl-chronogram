@@ -1,0 +1,1 @@
+((LANGUAGE . "osa") (TERRITORY . "US"))

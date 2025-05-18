@@ -1,0 +1,1 @@
+((LANGUAGE . "te") (TERRITORY . "IN"))

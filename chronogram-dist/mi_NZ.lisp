@@ -1,0 +1,1 @@
+((LANGUAGE . "mi") (TERRITORY . "NZ"))

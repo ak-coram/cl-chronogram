@@ -1,0 +1,1 @@
+((LANGUAGE . "cop") (TERRITORY . "EG"))

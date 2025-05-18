@@ -1,0 +1,1 @@
+((LANGUAGE . "xog") (TERRITORY . "UG"))

@@ -1,0 +1,9 @@
+((LANGUAGE . "it") (TERRITORY . "CH")
+ (CALENDARS
+  (GREGORIAN
+   (DATE-FORMATS (SHORT (PATTERN . "dd.MM.yy"))
+    (FULL (PATTERN . "EEEE, d MMMM y"))))
+  (GENERIC
+   (DATE-FORMATS (SHORT (PATTERN . "dd.MM.yy GGGGG"))
+    (MEDIUM (PATTERN . "d MMM y G")) (LONG (PATTERN . "d MMMM y G"))
+    (FULL (PATTERN . "EEEE, d MMMM y G"))))))

@@ -1,0 +1,1 @@
+((LANGUAGE . "eu") (TERRITORY . "ES"))

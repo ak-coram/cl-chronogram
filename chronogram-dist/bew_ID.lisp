@@ -1,0 +1,1 @@
+((LANGUAGE . "bew") (TERRITORY . "ID"))

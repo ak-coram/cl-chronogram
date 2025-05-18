@@ -1,0 +1,1 @@
+((LANGUAGE . "km") (TERRITORY . "KH"))

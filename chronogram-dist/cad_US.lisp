@@ -1,0 +1,1 @@
+((LANGUAGE . "cad") (TERRITORY . "US"))

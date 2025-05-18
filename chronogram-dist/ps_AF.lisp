@@ -1,0 +1,1 @@
+((LANGUAGE . "ps") (TERRITORY . "AF"))

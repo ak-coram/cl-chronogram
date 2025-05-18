@@ -1,0 +1,1 @@
+((LANGUAGE . "lrc") (TERRITORY . "IR"))

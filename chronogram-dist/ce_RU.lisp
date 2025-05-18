@@ -1,0 +1,1 @@
+((LANGUAGE . "ce") (TERRITORY . "RU"))

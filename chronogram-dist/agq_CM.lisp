@@ -1,0 +1,1 @@
+((LANGUAGE . "agq") (TERRITORY . "CM"))

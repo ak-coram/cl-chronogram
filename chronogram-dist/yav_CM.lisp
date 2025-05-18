@@ -1,0 +1,1 @@
+((LANGUAGE . "yav") (TERRITORY . "CM"))

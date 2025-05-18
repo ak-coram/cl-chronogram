@@ -1,0 +1,1 @@
+((LANGUAGE . "nus") (TERRITORY . "SS"))

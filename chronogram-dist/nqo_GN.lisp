@@ -1,0 +1,1 @@
+((LANGUAGE . "nqo") (TERRITORY . "GN"))

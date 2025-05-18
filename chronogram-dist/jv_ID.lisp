@@ -1,0 +1,1 @@
+((LANGUAGE . "jv") (TERRITORY . "ID"))

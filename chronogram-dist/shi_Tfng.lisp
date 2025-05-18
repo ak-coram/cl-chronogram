@@ -1,0 +1,1 @@
+((LANGUAGE . "shi") (SCRIPT . "Tfng"))

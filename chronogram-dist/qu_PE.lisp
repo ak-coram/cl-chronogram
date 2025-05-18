@@ -1,0 +1,1 @@
+((LANGUAGE . "qu") (TERRITORY . "PE"))

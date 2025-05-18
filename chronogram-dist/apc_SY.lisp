@@ -1,0 +1,1 @@
+((LANGUAGE . "apc") (TERRITORY . "SY"))

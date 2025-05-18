@@ -1,0 +1,9 @@
+((LANGUAGE . "en") (TERRITORY . "HK")
+ (CALENDARS
+  (GREGORIAN
+   (DATE-FORMATS (SHORT (PATTERN . "d/M/y")) (MEDIUM (PATTERN . "d MMM y"))
+    (LONG (PATTERN . "d MMMM y")) (FULL (PATTERN . "EEEE, d MMMM y"))))
+  (GENERIC
+   (DATE-FORMATS (SHORT (PATTERN . "d/M/yy GGGGG"))
+    (MEDIUM (PATTERN . "d MMM, y G")) (LONG (PATTERN . "d MMMM, y G"))
+    (FULL (PATTERN . "EEEE, d MMMM, y G"))))))

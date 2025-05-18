@@ -1,0 +1,1 @@
+((LANGUAGE . "vai") (SCRIPT . "Vaii"))

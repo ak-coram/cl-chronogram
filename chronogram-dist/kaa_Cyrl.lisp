@@ -1,0 +1,1 @@
+((LANGUAGE . "kaa") (SCRIPT . "Cyrl"))

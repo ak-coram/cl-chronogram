@@ -1,0 +1,1 @@
+((LANGUAGE . "lmo") (TERRITORY . "IT"))
